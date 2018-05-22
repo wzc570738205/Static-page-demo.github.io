@@ -1,0 +1,331 @@
+	*{
+			padding: 0;
+			margin: 0;
+		}
+		body{
+			background: #000 ;
+			background-size: cover;
+		}
+
+		a{
+			display: block;
+		}
+		html,body{
+			height: 100%;
+			overflow: hidden;
+		}
+		.swiper-container,.swiper-wrapper,.swiper-slide{
+			height: 100%;
+			width: 100%;
+			position: relative;
+		}
+		.move1{
+			background: #fff;
+		}
+		img{
+			
+			position:absolute;
+		}
+		.bulid{
+			position:absolute;
+			bottom: 0; 
+			width: 100%;
+		}
+
+		.arrowwrap{
+			display: block;
+			bottom: 33px;
+			width: 30px;
+			height: 30px;
+			left: 50%;
+			margin-left: -15px;
+			position: absolute;
+		}
+		.arrowwrap  .arrow-up{
+			width: 100%;
+			height: 100%;
+			opacity: 0.5;
+			/* animation: fadeIn 1.5s 1s infinite ease-in-out,fadeInUp 1.5s 1s infinite ease-in-out; */
+			animation-iteration-count:infinite;
+		}
+		.planwrap{
+			min-width: 100%;
+			margin: 0 auto;
+			height: 200px;
+			position: absolute;
+			top: 233px;
+			left: 41px;
+			z-index: 2;
+		}
+		.plane{
+			width: 80%;
+			animation: qqpulse 1.5s  infinite ease-in-out;
+			margin: 0 auto;
+            
+
+		}
+		
+		@-webkit-keyframes qqpulse{
+			0%{-webkit-transform:scale(1)}
+			50%{-webkit-transform:scale(1.05)}
+			100%{-webkit-transform:scale(1)}
+		}
+		.flower{
+			width: 100%;
+			height: 248px;
+		}
+		.txt{
+			width: 55%;
+			top: 10%;
+			left: 22%;
+		}
+		.flower1{
+			width: 14%;
+			top: 10%;
+			left: 14%;
+			z-index: 1;
+		}
+		.flower2{
+			width: 14%;
+			top: 21%;
+			left: 62%;
+		}
+		.bannerwrap{
+			width: 100%;
+			z-index: 1;
+			position: absolute;
+			height: 100%;
+		}
+		.banner1{
+			width: 100%;
+			z-index: 1;
+			animation: qqpulse 2s infinite ease-in-out;
+			height: 100%;
+			top: 3%;
+		}
+		.cloud{
+			height: 80%;
+			z-index: 0;
+		}
+		.move2wrap,.move3wrap{
+			background: #000;
+		}
+		.move2{
+            width: 100%;
+            height: 100%;
+
+		    background: url(../img/wasBg.jpg) 50% 100% no-repeat #000;
+		    background-size: 100% 90%;
+		}
+		.move2 img{
+			width: 100%;
+		}
+		.move2 img:nth-child(1){
+             top: 30%;
+		}
+		.move2 img:nth-child(2){
+             top: 45%;
+             
+		}
+		.move2 img:nth-child(3){
+           width: 91%;
+           top: 12%;
+           left: 4%;
+             
+		}
+
+		.move3{
+			 width: 100%;
+            height: 100%;
+
+		    background: url(../img/earlyBg.jpg) 50% 100% no-repeat #000;
+		    background-size: 100% 100%;
+		}
+		.move3 img{
+            width: 100%;
+		}
+	
+		.move3 img:nth-child(1){
+            bottom: 0;
+           /*  animation: opac 1.5s 3s 1 ease-in-out; */
+		}
+		.move3  .earlyTitle{
+			width: 30%;   position: absolute;
+            top: 5%;
+            height: 45px;
+             /* animation: fadeIn 1.5s 1s 1 ease-in-out; */
+            
+		}	
+		.move3  .earlyTitle img{
+			width: 100%;
+            height: 40px;
+           
+            
+		}
+		@-webkit-keyframes opac{
+			0%{opacity: 0}
+			50%{opacity: 1}
+			100%{opacity: 0}
+		}
+		.move3 .car{
+			position: absolute;
+			    width: 33%;
+    bottom: 9%;
+    left: 0%;
+		}
+		.move3 .car img{
+			width: 100%;
+		}
+		.move3 .people{
+			    width: 14%;
+    height: 70px;
+		}
+		.move3 .people img{
+			 width: 34%;
+			
+    left: 66%;
+    bottom: 6%;
+
+		}
+
+		.play,.stop{
+			width: 50px;
+			height: 50px;
+			background: url(../img/musicBtn.png) no-repeat center center;
+			position: absolute;
+			top: 8px;
+			right: 8px;
+			z-index: 99;
+            background-size: 100% 100%;
+          /*   transform: rotate(360deg);
+          transition: all 0.4s ease-in-out; */
+            animation: rot 3s infinite linear;
+		}
+		.stop{
+background-image: url(../img/musicBtnOff.png);
+ animation: none;
+		}
+		@-webkit-keyframes rot{
+			0%{transform: rotate(0deg)}
+		
+			100%{transform: rotate(360deg)}
+		}
+
+/* myTeamBg.jpg */
+.myTeamBg{
+	 width: 100%;
+            height: 100%;
+
+		    background: url(../img/myTeamBg.jpg) top no-repeat #000;
+		    background-size: 100%;
+		    position: absolute;
+		    top: 0;
+}
+.myTeamBg img:nth-child(1){
+	    width: 25%;
+    right: 11%;
+    top: 25%;
+    z-index: 5;
+}
+.myTeamBg img:nth-child(2){
+	    width: 25%;
+    right: 0;
+    bottom: 0;
+}
+.myTeamBg img:nth-child(3){
+	       width: 12%;
+    left: 16%;
+    bottom: 70%;
+}
+
+.myTeamBg img:nth-child(4){
+	       width: 20%;
+    left: 16%;
+    bottom: 63%;
+}
+
+.myTeamBg img:nth-child(5){
+	    width: 20%;
+    left: 16%;
+    bottom: 50%;
+}
+
+.myTeamBg img:nth-child(6){
+	     width: 20%;
+    left: 16%;
+    bottom: 57%;
+}
+.myTeamBg img:nth-child(7){
+	         width: 42%;
+    left: 34%;
+    bottom: 11%;
+}
+/* 视频 */
+#modelView{background-color:#DDDDDD;z-index:0;opacity:0.7;height: 100% !important;width: 100%;position: relative;}
+.playvideo{padding-top: 0px !important;z-index: 9999;position: relative;}
+.zy_media{z-index: 999999999}
+
+.move4{
+	background: url(../img/1501913236414.jpg) top center;
+	background-size: 100% 100%;
+}
+
+
+.end{
+	    text-align: center;
+    background: url(../img/endBg.png) no-repeat #3e88f1;
+    background-size: 100% 100%;
+}
+.endcloed{
+	left: 0%
+}
+.logo{
+	    width: 54%;
+    left: 22%;
+    top: 10%;
+}
+.endTxt{
+	width: 56%;
+    left: 22%;
+    top: 21%;
+}
+.endMail{
+	width: 56%;
+    left: 22%;
+    top: 35%;
+}
+.endClickGuide{
+
+	width: 42%;
+    left: 30%;
+    top: 42%;
+}
+.endAvatar{position: absolute;
+	width: 56%;
+	height: 110px;
+    left: 22%;
+    top: 49%;
+}
+.endAvatar img{
+	width: 100%;
+	left: 0;
+}
+.endplane{
+	 animation: qqshakeLarge 2s infinite linear;
+}
+@-webkit-keyframes qqshakeLarge{
+    0%,100%{-webkit-transform:translateY(0);}
+    10%,30%,50%,70%,90%{-webkit-transform:translateY(-10px);}
+    60%,80%{-webkit-transform:translateY(10px);}
+}
+.endBottomTxt{
+	width: 41%;
+	
+    left: 32%;
+    bottom:  3%;
+}
+/* ?\分割线 */
+.hsimg{
+	width: 100%;
+	position: initial;
+}
