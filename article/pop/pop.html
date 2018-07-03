@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>气泡背景</title>
+
+</head>
+<body>
+	
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/bubbly-bg@0.2.3/dist/bubbly-bg.js"></script> 
+<script>
+	bubbly({ 
+		colorStart: "#111", 
+		colorStop: "#422", 
+		bubbleFunc: () => `hsla(0, 100%, 50%, ${Math.random() * 0.25})` 
+	});
+	/*自定义设置参数
+	bubbly({
+	 animate: true, // 动画 默认是true
+	 blur: 4, // 默认的是4
+	 bubbleFunc: () => `hsla(${Math.random() * 360}, 100%, 50%, ${Math.random() * 0.25})`, // 气泡函数
+	 bubbles:100 , // 气泡数量
+	 canvas: document.querySelector("#background"), // 默认是 created and attached
+	 colorStart: "#337ab7", //默认是 blue-ish 背景色左上角
+	 colorStop: "#ff404b",//默认是 blue-ish 背景色右下角
+	 compose: "lighter", //默认是 "lighter"
+	 shadowColor: "#0ff", //默认是 #fff
+	});*/
+</script>
