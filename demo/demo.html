@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		.wrap{
+			width: 100%;
+			height: 450px;
+			background: url(https://ws1.sinaimg.cn/large/0065nu1aly1fuqdpfihl7j30sg0ci414.jpg) no-repeat;
+			background-size: 100% 100%;
+			position: relative;
+		}
+		.people{
+			position: absolute;
+			width: 5px;
+			height: 5px;
+			background: red;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap" id="wrap">
+		
+	</div>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script>
+	//百分比数据  20=>20%
+	//模拟动态数据
+	setInterval(people,1000)
+    people();
+	function people() {
+		let list=[];
+		for (let i = 0; i < 30; i++) {
+		let numX = (Math.random()*100).toFixed(2);
+		let numY = (Math.random()*100).toFixed(2);
+			list.push({x:numX,y:numY})
+		}
+		let html="";
+		for (let i = 0; i < list.length; i++) {
+			let top=list[i]['y']
+			let left=list[i]['x']
+			html+=`<div class="people" style="top:`+top+`%;left:`+left+`%"></div>`
+		}
+	    $("#wrap").html(html)
+	}
+</script>

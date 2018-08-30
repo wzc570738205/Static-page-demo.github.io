@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+		.wrapFather{
+			width: 300px;
+			height: 300px;
+			margin: 100px auto;
+			overflow: hidden;
+			cursor: move;
+			border:1px solid #000;
+		}
+		.wrap{
+			width: 1024px;
+			height: 450px;
+			background: url(https://ws1.sinaimg.cn/large/0065nu1aly1fuqdpfihl7j30sg0ci414.jpg) no-repeat;
+			background-size: 100% 100%;
+			position: relative;
+			top: 0;
+			left: 0;
+		}
+		.people{
+			position: absolute;
+			width: 5px;
+			height: 5px;
+			background: red;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapFather" id="wrapFather">
+		<div class="wrap" id="wrap">
+		
+	    </div>
+	</div>
+	
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script>
+	//百分比数据  20=>20%
+	//模拟动态数据
+	setInterval(people,5000)
+    people();
+	function people() {
+		let list=[];
+		for (let i = 0; i < 30; i++) {
+		let numX = (Math.random()*100).toFixed(2);
+		let numY = (Math.random()*100).toFixed(2);
+			list.push({x:numX,y:numY})
+		}
+		let html="";
+		for (let i = 0; i < list.length; i++) {
+			let top=list[i]['y']
+			let left=list[i]['x']
+			html+=`<div class="people" style="top:`+top+`%;left:`+left+`%"></div>`
+		}
+	    $("#wrap").html(html)
+	}
+
+	//拖抓
+	var wrapFather = document.getElementById("wrapFather");
+	var oLine = document.getElementById("wrap");
+	      oLine.onmousedown = function (e) {
+            var disX = (e || event).clientX;
+            var disY = (e || event).clientY;
+            oLine.left = oLine.offsetLeft - wrapFather.offsetLeft;
+            oLine.top = oLine.offsetTop - wrapFather.offsetTop;
+            document.onmousemove = function (e) {
+                var iLeft = oLine.left + ((e || event).clientX - disX);
+                var iTop = oLine.top + ((e || event).clientY - disY);
+                if(iLeft>0){
+                	iLeft=0;
+                }
+                if(iLeft<=wrapFather.offsetWidth-oLine.offsetWidth){
+                	iLeft=wrapFather.offsetWidth-oLine.offsetWidth;
+                }
+                if(iTop>0){
+                	iTop=0;
+                }
+                if(iTop<=wrapFather.offsetHeight-oLine.offsetHeight){
+                	iTop=wrapFather.offsetHeight-oLine.offsetHeight;
+                }
+                oLine.style.left = iLeft  + "px";
+                oLine.style.top = iTop  + "px";
+                return false;
+            };
+            document.onmouseup = function () {
+                document.onmousemove = null;
+                document.onmouseup = null;
+                oLine.releaseCapture && oLine.releaseCapture();
+            };
+            oLine.setCapture && oLine.setCapture();
+            return false;
+        };
+</script>
