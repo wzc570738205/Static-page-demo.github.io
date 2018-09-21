@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	let CurHourEnvData;
+	//CurHourEnvData = res.body;
+	CurHourEnvData=[{
+		device_id:'001',
+		start_time: '10:00',
+		NO2:10.45,
+	},{
+		device_id:'001',
+		start_time: '11:00',
+		NO2:50.45,
+	},{
+		device_id:'002',
+		start_time: '12:00',
+		NO2:20.45,
+	},{
+		device_id:'003',
+		start_time: '13:00',
+		NO2:30.45,
+	},{
+		device_id:'003',
+		start_time: '14:00',
+		NO2:60.45,
+	}]
+	let series = [];
+	for (let k in CurHourEnvData) {
+		let data = [];
+		let obj = {
+			name:CurHourEnvData[k].device_id,
+			type:'line',
+			sttack: '总量',
+			data:data
+		}
+		series.push(obj)
+	}
+	for (let j in series) {
+		for (let k in CurHourEnvData) {
+			if(CurHourEnvData[k].device_id==series[j].name){
+				series[j]['data'].push(CurHourEnvData[k]['NO2'])
+			}
+		}
+	}
+	let x=[]
+	for (let m in CurHourEnvData) {
+		x.push(CurHourEnvData[m].start_time)
+	}
+	series = uniq(series,'name')
+	console.log(CurHourEnvData);
+	console.log(series);
+	console.log(x);
+
+	function timeFormat(ms) {
+		if (ms) {
+			return new Date(ms).toString().slice(16,25);;
+		} else {
+			return "";
+		}
+	}
+
+	function uniq(array,type){
+		var result = [];
+		var obj = {};
+		for(var i =0; i<array.length; i++){
+			if(!obj[array[i][type]]){
+				result.push(array[i]);
+				obj[array[i][type]] = true;
+			}
+		}
+		return result;
+	}
+
+/*	series=[{
+		name:'001',
+		type:'line',
+		sttack: '总量',
+		data:[10.45, 50.45]
+	},{
+		name:'002',
+		type:'line',
+		sttack: '总量',
+		data:[20.45]
+	},{
+		name:'003',
+		type:'line',
+		sttack: '总量',
+		data:[30.45, 60.45]
+	}]*/
+	let a1 = [11,2,1,11,2,3,3,4]
+let b=[]
+for (let i = 0;i<a1.length;i++){
+  if(b.indexOf(a1[i])==-1){
+b.push(a1[i])
+  }
+}
+console.log(b)
+function sortNumber(a, b)
+{
+return a - b
+}
+console.log(a1.sort(sortNumber))
+</script>

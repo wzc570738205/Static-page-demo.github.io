@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    .wrap {
+        width: auto;
+        display: flex;
+        align-items: center;
+        padding-left: 30px;
+    }
+
+    .circleWrap {
+        position: relative;
+    }
+
+    .circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 3px solid #1abc9c;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        float: left;
+    }
+
+    .line {
+        content: '';
+        width: 200px;
+        height: 5px;
+        background: #1abc9c;
+        float: left;
+        margin-top: 50px;
+    }
+
+    .phone {
+        width: 40px;
+        height: 50px;
+        border: 1px solid #1abc9c;
+        border-top: 2px solid #1abc9c;
+        border-bottom: none;
+    }
+
+    .circleWrap:last-child .line {
+        display: none;
+    }
+
+    .completion {
+        border-color: #1abc9c!important;
+    }
+
+    .processing .circle {
+        border-color: #ccc!important;
+    }
+
+    .processing .phone {
+        border-color: #ccc!important;
+    }
+
+    .processing .line {
+        background: #ccc!important;
+    }
+
+    .text {
+        position: absolute;
+        top: 120px;
+        left: -50px;
+        text-align: center;
+        width: 200px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="circleWrap completion">
+            <div class="circle">
+                <div class="phone"></div>
+            </div>
+            <div class="line"></div>
+            <div class="text">
+                <p>报警发生</p>
+                <p class="time">2018-09-19 14:16:47</p>
+            </div>
+        </div>
+        <div class="circleWrap processing">
+            <div class="circle">
+                <div class="phone"></div>
+            </div>
+            <div class="line"></div>
+            <div class="text">
+                <p>报警处理</p>
+                <p class="time">处理中</p>
+            </div>
+        </div>
+        <div class="circleWrap processing">
+            <div class="circle">
+                <div class="phone"></div>
+            </div>
+            <div class="line"></div>
+            <div class="text">
+                <p>处理完毕</p>
+                <p class="time"></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script>
+let processing = {};
+let num = 0;
+let timeer = null;
+timeer = setInterval(() => {
+    num++;
+    if (num < 5) {
+        processing = { status: '报警处理', time: '' };
+    } else if (num > 5 && num < 10) {
+        processing = { status: '报警处理', time: '2018-09-20 14:16:47' };
+    } else if (num > 10) {
+        processing = { status: '处理完毕', time: '2018-09-20 18:16:47' };
+        clearInterval(timeer);
+    }
+
+    if (processing['status'] == '报警处理' && processing['time']) {
+    	console.log($('.circleWrap').eq(1).attr("class"))
+        $('.circleWrap').eq(1).removeClass('processing');
+        $('.circleWrap').eq(1).addClass('completion');
+        $('.time').eq(1).html(processing['time']);
+    }
+
+    if (processing['status'] == '处理完毕' && processing['time']) {
+    	console.log($('.circleWrap').eq(2).attr("class"))
+        $('.circleWrap').eq(2).removeClass('processing');
+        $('.circleWrap').eq(2).addClass('completion');
+        $('.time').eq(2).html(processing['time']);
+    }
+
+    console.log(processing)
+}, 1000)
+</script>

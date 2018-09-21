@@ -1,0 +1,214 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>模仿笔画</title>
+	<style type="text/css">
+	#_canvas{
+		background-color: rgb(240,240,240);
+	}
+</style>
+</head>
+<body>
+	<input type="text" id="input">
+	<button id="search">搜索（只能搜索李四和小明）</button>
+	<canvas id="_canvas" width="500" height='500'>sorry, your broswer does not support html5!</canvas>
+	<script type="text/javascript">
+		var canvas_ = document.getElementById("_canvas");
+
+//全屏
+/*canvas_.setAttribute("width",screen.width);
+canvas_.setAttribute("height",screen.height);*/
+
+var context = canvas_.getContext("2d");
+context.strokeStyle = "red";
+context.lineWidth = 1;
+
+var array_paint = [];
+var current_y = 0;
+var current_x = 0;
+//判断鼠标是否按下
+var m_down = false;
+
+
+//背景图
+var img=new Image()
+img.src="https://ws1.sinaimg.cn/large/0065nu1aly1fuqdpfihl7j30sg0ci414.jpg"
+context.drawImage(img,0,0);
+
+function paint()
+{
+	context.beginPath();
+	context.moveTo(array_paint[0][0],array_paint[0][1]);
+	if(array_paint.length == 1)
+		context.lineTo(array_paint[0][0] +1,array_paint[0][1] +1);
+	else
+	{
+		var i =1; 
+		for(i in array_paint)
+		{
+			context.lineTo(array_paint[i][0],array_paint[i][1]);
+			context.moveTo(array_paint[i][0],array_paint[i][1]);
+		}
+
+	}
+	context.closePath();
+	context.stroke();
+}
+
+
+//按下鼠标
+canvas_.onmousedown = function(event)
+{
+	m_down = true;
+	current_x = event.offsetX;
+	current_y = event.offsetY;
+	array_paint.push([current_x,current_y]);
+	paint();
+}
+
+
+//鼠标松开,清空数据
+canvas_.onmouseup = function(event)
+{
+	m_down = false;
+	array_paint = [];
+}
+
+
+//鼠标按下后拖动
+canvas_.onmousemove = function(event)
+{
+	if(m_down)
+	{
+		current_x = event.offsetX;
+		current_y = event.offsetY;
+		console.log(current_x,current_y);
+		array_paint.push([current_x,current_y]);
+		paint();
+	}
+}
+let num = -1;
+let timer=null;
+let list=[/*{
+	current_x:60.5,
+	current_y:41.5,
+},{
+	current_x:65.5,
+	current_y:45.5,
+},{
+	current_x:70.5,
+	current_y:50.5,
+},{
+	current_x:71.5,
+	current_y:55.5,
+},{
+	current_x:81.5,
+	current_y:55.5,
+},{
+	current_x:91.5,
+	current_y:55.5,
+},{
+	current_x:91.5,
+	current_y:85.5,
+},{
+	current_x:91.5,
+	current_y:95.5,
+},{
+	current_x:91.5,
+	current_y:99.5,
+},{
+	current_x:79.5,
+	current_y:99.5,
+}*/]
+for (var i = 0; i < 100; i++) {
+	list.push({current_x:i,
+	current_y:i,})
+}
+function people() {
+num++;
+	    var imgpeople=new Image()
+	    imgpeople.src="https://ws1.sinaimg.cn/large/0065nu1aly1fv97zlqd2yj305k05kq32.jpg"
+	    context.drawImage(imgpeople,list[num].current_x*500/100-10,list[num].current_y*500/100-20,20,20);
+	     context.clearRect(0,0,screen.width,screen.height);
+	      context.drawImage(img,0,0);
+
+    console.log(list[num].current_x*500/100);
+    if(num<list.length-1){
+    	    let current_x = (Math.random()*100).toFixed(2);
+		    let current_y = (Math.random()*100).toFixed(2);
+		    array_paint.push([list[num].current_x*500/100,list[num].current_y*500/100]);
+		    paint();
+		    if(num>0){
+				  context.drawImage(imgpeople,list[num].current_x*500/100-10,list[num].current_y*500/100-20,20,20);
+			 }
+    }else{
+    	array_paint=[];
+    	for (var i = 0; i < list.length; i++) {
+    		 array_paint.push([list[i].current_x*500/100,list[i].current_y*500/100]);
+		     paint();
+		     context.drawImage(imgpeople,list[num].current_x*500/100-10,list[num].current_y*500/100-20,20,20);
+    	}
+    	clearInterval(timer);
+    }
+    
+}
+
+document.getElementById('search').onclick = function (argument) {
+	var searchname = document.getElementById('input').value;
+	list=[];//重新填入数据
+	if(searchname=='小明'){
+			for (var i = 0; i < 100; i++) {
+				list.push({current_x:i,
+				current_y:i})
+			}
+	}else if(searchname=='李四'){
+			for (var i = 0; i < 100; i++) {
+				list.push({current_x:(Math.random()*10).toFixed(2),
+				current_y:(Math.random()*10).toFixed(2)})
+			}
+	}else{
+		list = heartShape(20,50,20)
+	}
+	num = -1;//初始化num
+	array_paint=[];//清空红色路径
+	context.clearRect(0,0,screen.width,screen.height);//清空画布
+	context.drawImage(img,0,0);////清空画布
+	clearInterval(timer)
+	if(searchname!=''){
+	  timer = setInterval(people,30)
+	}
+}
+/*document.getElementById('start2').onclick = function (argument) {
+	list=[];
+	for (var i = 0; i < 100; i++) {
+		list.push({current_x:(Math.random()*100).toFixed(2),
+		current_y:(Math.random()*100).toFixed(2)})
+	}
+	num = -1;
+	array_paint=[]
+	context.clearRect(0,0,screen.width,screen.height);
+	context.drawImage(img,0,0);
+	clearInterval(timer)
+	timer = setInterval(people,30)
+}
+document.getElementById('remove').onclick = function (argument) {
+	context.clearRect(0,0,screen.width,screen.height);
+	context.drawImage(img,0,0);
+}*/
+function heartShape(r,dx,dy){//r:大小;dx:水平偏移;dy:垂直偏移;c:颜色
+  var m,n,x,y,i;
+  let arr =[];
+  for(i = 0; i <= 7.9; i += 0.04){
+    m = i;
+    n = -r * (((Math.sin(i) * Math.sqrt(Math.abs(Math.cos(i)))) / (Math.sin(i) + 1.4)) - 2 * Math.sin(i) + 2);
+    x = n * Math.cos(m) + dx;
+    y = n * Math.sin(m) + dy;
+    arr.push({current_x:x,
+				current_y:y})
+  }
+  return arr
+}
+</script>
+</body>
+</html>

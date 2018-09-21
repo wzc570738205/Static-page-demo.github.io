@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Document</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		.wrap{
+			width: 100%;
+			height: 450px;
+			background: url(https://ws1.sinaimg.cn/large/0065nu1aly1fuqdpfihl7j30sg0ci414.jpg) no-repeat;
+			background-size: 100% 100%;
+			position: relative;
+			overflow: hidden;
+		}
+		.people{
+			position: absolute;
+			width: 25px;
+			height: 25px;
+			background: url(https://ws1.sinaimg.cn/large/0065nu1aly1fv5mtyq5u8j305k05k3ye.jpg) no-repeat;
+			border-radius: 50%;
+			background-size: contain;
+		}
+	 	.people:hover .top{
+		display: block;
+	} 
+	.people:hover{
+		z-index: 999;
+	}
+		.top{    
+      width: 100px;
+    height: 50px;
+    background: red;
+    margin-top: -61px;
+    margin-left: -40px;
+    border-radius: 5px;
+    display: none;
+		}
+		.top:after{content: "";
+    width: 0;
+    height: 0;
+    /* background: #000; */
+    bottom: 16px;
+    position: absolute;
+    left: 0;
+    border: 10px solid transparent;
+    border-top-color: #000;
+		}
+		.top p{
+			font-size: 12px;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap" id="wrap">
+		
+	</div>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script>
+	//百分比数据  20=>20%
+	//模拟动态数据
+	setInterval(people,50000)
+  people();
+	function people() {
+		let list=[];
+		for (let i = 0; i < 30; i++) {
+		let numX = (Math.random()*100).toFixed(2);
+		let numY = (Math.random()*100).toFixed(2);
+			list.push({x:numX,y:numY})
+		}
+		let html="";
+		for (let i = 0; i < list.length; i++) {
+			let top=list[i]['y']
+			let left=list[i]['x']
+			html+=`<div class="people" style="top:`+top+`%;left:`+left+`%"><div class="top"><p>姓名：`+i+`</p><p>x坐标：`+left+`</p>
+		<p>y坐标：`+top+`</p></div></div>`
+		}
+	    $("#wrap").html(html)
+	}
+	//点击弹出
+	$("#wrap .people").click(function(event) {
+		$(".top").css('display', 'none');
+		event.stopPropagation();
+		$(this).find(".top").css('display', 'block');
+		$('.people').css('z-index', '1');
+		$(this).css('z-index', '999');
+	});
+	$("#wrap").click(function(event) {
+		$(".top").css('display', 'none');
+		$("#wrap .people").click(function(event) {
+			$(".top").css('display', 'none');
+			$(this).css('z-index', '1');
+			event.stopPropagation();
+			$(this).find(".top").css('display', 'block');
+			$(this).css('z-index', '999');
+		});
+	});
+</script>

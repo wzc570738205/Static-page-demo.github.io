@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    .wrapleft,
+    .wrapright {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #ccc;
+        float: left;
+        cursor: pointer;
+    }
+
+    p:hover {
+        background: #ccc;
+        color: #fff;
+    }
+
+    .img {
+        width: 20px;
+        height: 200px;
+        background: #cfa123;
+        float: left;
+    }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+</head>
+
+<body>
+    <div class="wrapleft" id="wrapleft">
+        <p>123</p>
+        <p>412414</p>
+        <p>12124512353</p>
+        <p>235235</p>
+    </div>
+    <div class="img"></div>
+    <div class="wrapright" id="wrapright"></div>
+</body>
+
+</html>
+<script>
+function getDom(id) {
+    return document.getElementById(id);
+}
+let shuttleBox = {
+    wrapleft: getDom('wrapleft'),
+    wrapright: getDom('wrapleft'),
+    init: (argument) => {
+        this.wrapleft.addEventListener('click', (el) => {
+            var target = el.target;
+            if (target.tagName.toLowerCase() == 'p') {
+                this.wrapleft.removeChild(target);
+                this.wrapright.appendChild(target);
+            }
+        })
+        this.wrapright.addEventListener('click', (el) => {
+            var target = el.target;
+            if (target.tagName.toLowerCase() == 'p') {
+                this.wrapright.removeChild(target);
+                this.wrapleft.appendChild(target);
+            }
+        })
+    }
+}
+shuttleBox.init();
+</script>
