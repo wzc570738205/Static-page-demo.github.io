@@ -61,21 +61,20 @@
     .img>div:nth-child(1) {
       margin-right: 2%
     }
-
   </style>
 </head>
 
 <body>
   <div id="wrap">
     <div class="title">
-      您好, <strong id="name">王志超</strong>:
+      您好, <strong id="name">XXX</strong>:
     </div>
     <div class="body">
-      我是 <strong id="loction">康桥边的院子5号楼1单元3层0301</strong> 的业主，现诚邀作为房屋“<strong id="type">家人</strong>”一起管理我们的房间。请扫描以下二维码下载
+      我是 <strong id="location">XXXXXX</strong> 的业主，现诚邀作为房屋“<strong id="type">XX</strong>”一起管理我们的房间。请扫描以下二维码下载
       in社区APP 。
     </div>
     <div class="info">
-      注意，请以<strong id="phone">181494293**</strong>注册登录，合作愉快！
+      注意，请以<strong id="phone">XXXXXXXXXX</strong>注册登录，合作愉快！
     </div>
     <div class="img">
       <div>
@@ -91,8 +90,21 @@
 </body>
 
 </html>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
 <script>
-    var aa = location.search; 
-    console.log(aa)
+function $(id){
+  return document.getElementById(id)
+}
+  var url = decodeURI(window.location.search);
+  //定义一个空对象
+  var obj = {};
+  url = url.split('?')
+  url.forEach(element => {
+    var a = element.split('=')
+    obj[a[0]] = a[1]
+  });
+  $('name').innerHTML=obj.name
+  $('location').innerHTML=obj.location
+  $('type').innerHTML=obj.type
+  $('phone').innerHTML=obj.phone
+  console.log(obj);
 </script>
