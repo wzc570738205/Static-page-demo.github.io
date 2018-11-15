@@ -107,6 +107,6 @@ function $(id){
   $('name').innerHTML=obj.name
   $('location').innerHTML=obj.location
   $('type').innerHTML=obj.type
-  $('phone').innerHTML=obj.phone
+  $('phone').innerHTML=obj.phone.slice(0,11)
   console.log(obj);
 </script>
