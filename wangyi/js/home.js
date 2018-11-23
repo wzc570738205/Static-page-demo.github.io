@@ -3,6 +3,7 @@ $.ajax({
     type: "get",
     url: "https://music.163.com/api/playlist/detail?id=3778678",
     success: function (data) {
+        alert(data)
         $("#updatetime").html(timeFormat(data.result.trackNumberUpdateTime));
         list = data.result.tracks;
         let songlist = data.result.tracks;
