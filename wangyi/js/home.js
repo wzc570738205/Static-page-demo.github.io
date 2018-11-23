@@ -1,7 +1,7 @@
 var list = []
 $.ajax({
     type: "get",
-    url: "http://music.163.com/api/playlist/detail?id=3778678",
+    url: "https://music.163.com/api/playlist/detail?id=3778678",
     success: function (data) {
         $("#updatetime").html(timeFormat(data.result.trackNumberUpdateTime));
         list = data.result.tracks;
