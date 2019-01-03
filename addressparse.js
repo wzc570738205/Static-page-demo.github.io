@@ -106,9 +106,9 @@ function parse(address) {
       detail = detail_parse(address.trim(), {
         ignoreArea: true
       });
-      console.log('smart_parse->ignoreArea');
+      //console.log('smart_parse->ignoreArea');
     }else{
-      console.log('smart_parse');
+     // console.log('smart_parse');
     }
     //这个待完善
     const list = address.replace(detail.province, '').replace(detail.city, '').replace(detail.area, '').split(' ').filter(str => str);
